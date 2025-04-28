@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Terminal - Secure Access</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .download-container {
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid #0f0;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px #0f0;
+            text-align: center;
+            width: 400px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            letter-spacing: 2px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0f0;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        button:hover {
+            background-color: #0a0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="download-container">
+        <h2>*** DOWNLOAD FILE ***</h2>
+        <button onclick="downloadFile()">TÉLÉCHARGER</button>
+    </div>
+
+<script>
+    function downloadFile() {
+        const fileUrl = "https://raw.githubusercontent.com/Pcquifume/aR7kL2mZ9x/main/name";
+
+        fetch(fileUrl)
+            .then(response => response.blob())
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.download = "name"; // Nom du fichier téléchargé
+                document.body.appendChild(link);
+                link.click();
+                link.remove();
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(() => alert('Erreur lors du téléchargement.'));
+    }
+</script>
+
+</body>
+</html>
